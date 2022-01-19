@@ -1,0 +1,30 @@
+version: "3.7"
+
+services:
+  ssp_installed:
+    image: ssp_prod_support:5332
+    container_name: ssp_container
+    hostname: ssp_installed
+    tty: true
+    privileged: true
+    ports:
+      - "22:22"
+      - "4200:4200"
+      - "8008:8008"
+      - "8080:8080"
+      - "9443:9443"
+      - "18080:18080"
+    expose:
+      - "22"
+      - "18080"
+    volumes:
+      - type: bind
+        read_only: false
+        source: C:\bundles\vodafone\deploy\
+        target: /u02/netcracker/ssp/deploy
+    command: ["/usr/sbin/init", "/usr/bin/bash"]
+    deploy:
+      resources:
+        limits:
+          cpus: "6"
+          memory: 8192m

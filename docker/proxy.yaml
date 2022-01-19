@@ -1,0 +1,13 @@
+version: "3.7"
+
+services:
+  apache_proxy:
+    image: oraclelinux:7.9
+    container_name: proxy_container
+    hostname: proxy
+    tty: true
+    privileged: true
+    ports:
+      - "9090:9090"
+      - "8443:8443"
+    command: ["/usr/sbin/init", "/usr/bin/bash"]

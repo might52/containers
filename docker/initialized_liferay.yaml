@@ -1,0 +1,43 @@
+version: "3.7"
+
+services:
+  clean_tomcat:
+    image: ssp_clean:1.0
+    container_name: ssp_clean_container
+    hostname: ssp_clean
+    tty: true
+    privileged: true
+    ports:
+      - "22:22"
+      - "4200:4200"
+      - "8008:8008"
+      - "8080:8080"
+      - "9443:9443"
+      - "18080:18080"
+    expose:
+      - "22"
+      - "18080"
+    volumes:
+      - type: bind
+        read_only: false
+        source: C:\bundles\vodafone\deploy\
+        target: /u02/netcracker/ssp/deploy
+    command: ["/usr/sbin/init", "/usr/bin/bash"]
+    deploy:
+      resources:
+        limits:
+          cpus: 4
+          memory: 8192m
+
+  postgres:
+    container_name: postgres_container
+    hostname: postgres_clean
+    image: postgres:11.10
+    environment:
+      POSTGRES_PASSWORD: postgres
+    privileged: true
+    tty: true
+    ports:
+      - "5432:5432"
+    expose:
+      - "5432"
