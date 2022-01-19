@@ -78,4 +78,4 @@ Listen *:8443
   systemctl restart httpd
   systemctl status httpd.service
 
-## ad the end we will have available proxy by http://localhost:8443 via http://server_name:8080 with X-Forwarded-For header.
+## We will have available proxy by http://localhost:8443 via http://server_name:8080 with X-Forwarded-For header.
