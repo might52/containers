@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   clean_tomcat:
-    image: ssp_clean:1.0
+    image: ssp_clean:7.3
     container_name: ssp_clean_container
     hostname: ssp_clean
     tty: true
@@ -32,7 +32,7 @@ services:
   postgres:
     container_name: postgres_container
     hostname: postgres_clean
-    image: postgres:11.10
+    image: postgres:11.13
     environment:
       POSTGRES_PASSWORD: postgres
     privileged: true
