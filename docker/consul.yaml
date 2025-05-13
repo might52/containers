@@ -1,0 +1,29 @@
+version: "3.7"
+
+services:
+  consul:
+    image: hashicorp/consul
+    container_name: consul
+    privileged: true
+    environment:
+      CONSUL_LOCAL_CONFIG:
+        '{
+            "node_name": "consul-server",
+            "server": true,
+            "bootstrap": true,
+            "ui_config": {
+              "enabled": true
+            },
+            "datacenter": "dc1",
+            "data_dir": "consul/data",
+            "log_level": "INFO",
+            "addresses": {
+              "http": "0.0.0.0"
+            },
+            "connect": {
+              "enabled": true
+            }
+          }'
+    ports:
+      - "8500:8500"
+      - "8600:8600/udp"
